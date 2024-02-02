@@ -1,0 +1,10 @@
+---
+- hosts: db
+  become: true
+  gather_facts: true
+  ignore_errors: false
+
+  roles:
+   - apache
+   - system
+   - java

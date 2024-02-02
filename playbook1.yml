@@ -1,0 +1,27 @@
+---
+- hosts: all
+  become: true
+  gather_facts: yes
+  ignore_errors: true    #to ignore the faillure task and move to the next one
+  vars:
+    user_name: aly126
+    group_name: devops
+  vars_files:
+    - variables.yml
+  tasks:
+    - name: check the time
+      command: datejkgg
+#      when: ansible_distribution == "Aly" or ansible_processor_nproc== 2
+
+    - name: create user Aly
+      user:
+          name:  "{{user_name}}"
+          comment: Aly Admin
+    - name: create group
+      group:
+          name: "{{group_name}}"
+          state: present
+    - name: install package
+      package: 
+         name: "{{pkg_name}}"
+         state: present
